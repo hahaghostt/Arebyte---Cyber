@@ -9,13 +9,19 @@ public class CharacterController : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public float rotationSpeed = 2f;
+    public float sprintSpeed = 8f; 
 
     private Rigidbody rb;
     private Camera playerCamera;
 
     private float cameraRotationX = 0f;
 
-    public float jumpForce = 10f; 
+    public float jumpForce = 10f;
+    public float gravityModifier;
+
+    public bool isOnGround = true;
+
+    
 
     
 
@@ -27,12 +33,29 @@ public class CharacterController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * 1000);
+
+        Physics.gravity *= gravityModifier;
+
+        movementSpeed = 8f; 
     }
 
     private void Update()
     {
         MoveCharacter();
         RotateCamera();
+
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
+
+       //  transform.Translate(movementSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, movementSpeed * Input.GetAxis("Vertical") * Time.deltaTime); 
+
+       
     }
 
     private void MoveCharacter()
@@ -44,6 +67,8 @@ public class CharacterController : MonoBehaviour
         Vector3 moveVelocity = transform.TransformDirection(moveDirection) * movementSpeed;
 
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+
+       
     }
 
     private void RotateCamera()
@@ -60,9 +85,11 @@ public class CharacterController : MonoBehaviour
 
         playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
     }
-    
-    private void jump()
-    {
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        isOnGround = true; 
     }
+
+
 }
