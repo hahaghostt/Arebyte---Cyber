@@ -11,24 +11,23 @@ public class CharacterController : MonoBehaviour
     public float rotationSpeed = 2f;
 
     private Rigidbody rb;
-    private Camera mainCamera;
+    private Camera playerCamera;
+
+    private float cameraRotationX = 0f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
+        rb.freezeRotation = true; 
+        playerCamera = Camera.main;
 
-   
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void Update()
     {
-
         MoveCharacter();
-
-
         RotateCamera();
     }
 
@@ -38,7 +37,7 @@ public class CharacterController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 moveVelocity = moveDirection * movementSpeed;
+        Vector3 moveVelocity = transform.TransformDirection(moveDirection) * movementSpeed;
 
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
     }
@@ -48,13 +47,13 @@ public class CharacterController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
 
-  
-        transform.Rotate(Vector3.up * mouseX);
+       
+        transform.Rotate(Vector3.up, mouseX);
 
-        float currentRotationX = mainCamera.transform.rotation.eulerAngles.x;
-        float newRotationX = currentRotationX - mouseY;
-        newRotationX = Mathf.Clamp(newRotationX, -90f, 90f);
+     
+        cameraRotationX -= mouseY;
+        cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
 
-        mainCamera.transform.rotation = Quaternion.Euler(newRotationX, 0f, 0f);
+        playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
     }
 }
