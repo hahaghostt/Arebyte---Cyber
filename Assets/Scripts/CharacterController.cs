@@ -8,8 +8,7 @@ public class CharacterController : MonoBehaviour
     public float movementSpeed = 5f;
     public float rotationSpeed = 2f;
     public float sprintSpeed = 8f;
-    public float sprintMultiplier = 1.5f; // Sprint speed multiplier
-    public float sprintCooldown = 2f; // Cooldown duration in seconds
+
 
     private Rigidbody rb;
     private Camera playerCamera;
