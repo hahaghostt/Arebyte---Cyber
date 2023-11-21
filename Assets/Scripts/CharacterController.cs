@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class CharacterController : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public float rotationSpeed = 2f;
-    public float sprintSpeed = 8f; 
+    public float sprintSpeed = 8f;
+    public float sprintMultiplier = 1.5f; // Sprint speed multiplier
+    public float sprintCooldown = 2f; // Cooldown duration in seconds
 
     private Rigidbody rb;
     private Camera playerCamera;
@@ -21,14 +21,10 @@ public class CharacterController : MonoBehaviour
 
     public bool isOnGround = true;
 
-    
-
-    
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; 
+        rb.freezeRotation = true;
         playerCamera = Camera.main;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -39,24 +35,25 @@ public class CharacterController : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-        movementSpeed = 8f; 
     }
 
     private void Update()
     {
+        HandleInput();
         MoveCharacter();
         RotateCamera();
+    }
 
+    private void HandleInput()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
 
-       //  transform.Translate(movementSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, movementSpeed * Input.GetAxis("Vertical") * Time.deltaTime); 
-
-       
     }
+
 
     private void MoveCharacter()
     {
@@ -64,11 +61,9 @@ public class CharacterController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 moveVelocity = transform.TransformDirection(moveDirection) * movementSpeed;
+        Vector3 moveVelocity = transform.TransformDirection(moveDirection) * (movementSpeed);
 
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
-
-       
     }
 
     private void RotateCamera()
@@ -76,10 +71,8 @@ public class CharacterController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
 
-       
         transform.Rotate(Vector3.up, mouseX);
 
-     
         cameraRotationX -= mouseY;
         cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
 
@@ -88,8 +81,6 @@ public class CharacterController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true; 
+        isOnGround = true;
     }
-
-
 }
