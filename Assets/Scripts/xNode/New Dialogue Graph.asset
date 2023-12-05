@@ -46,6 +46,7 @@ MonoBehaviour:
   nodes:
   - {fileID: -6193849204881460424}
   - {fileID: 1558714224117683091}
+  - {fileID: 5929775043469206931}
   current: {fileID: -6193849204881460424}
 --- !u!114 &1558714224117683091
 MonoBehaviour:
@@ -82,7 +83,10 @@ MonoBehaviour:
       _node: {fileID: 1558714224117683091}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: entry
+        node: {fileID: 5929775043469206931}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -91,4 +95,49 @@ MonoBehaviour:
   exit: 0
   speakerName: Bob
   dialogueLine: bob goes to school
+  sprite: {fileID: 21300000, guid: 473464a7b8e89de4bad78197c5051200, type: 3}
+--- !u!114 &5929775043469206931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c841f099adbd6944892e2bc9cc02b8f, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: -136}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5929775043469206931}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: 1558714224117683091}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5929775043469206931}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  entry: 0
+  exit: 0
+  speakerName: 
+  dialogueLine: 
   sprite: {fileID: 21300000, guid: 473464a7b8e89de4bad78197c5051200, type: 3}
