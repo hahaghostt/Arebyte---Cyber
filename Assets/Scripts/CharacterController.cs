@@ -76,6 +76,8 @@ public class CharacterController : MonoBehaviour
         cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
 
         playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+
+           
     }
 
     private void OnCollisionEnter(Collision collision)
