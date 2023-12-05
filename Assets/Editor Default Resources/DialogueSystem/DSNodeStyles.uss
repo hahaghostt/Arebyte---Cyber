@@ -1,0 +1,137 @@
+/* CONTAINERS */
+
+.ds-node__extension-container
+{
+	background-color: #1D1D1E;
+	padding: 8px;
+}
+
+.ds-node__main-container
+{
+	background-color: #1D1D1E;
+}
+
+.ds-node_custom-data-containers
+{
+	background-color: #212325;
+	border-radius: 4px;
+	padding: 8px;
+}
+
+/* INPUTS */
+
+.ds-node__textfield > .unity-text-field__input
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+	border-radius: 4px;
+	max-width: 240px;
+	min-width: 160px;
+	padding: 8px;
+}
+
+.ds-node__textfield__hidden > .unity-text-field__input
+{
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.ds-node__textfield__hidden > .unity-text-field__input:focus
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+}
+
+.ds-node__filename-textfield > .unity-text-field__input
+{
+	max-width: 1000px;
+}
+
+.ds-node__filename-textfield > .unity-text-field__input:focus
+{
+	margin: 4px;
+	padding: 4px;
+}
+
+.ds-node__choice-textfield > .unity-text-field__input
+{
+	font-size: 11px;
+	height: 35px;
+	max-width: 1000px;
+	min-width: 0px;
+}
+
+.ds-node__choice-textfield > .unity-text-field__input:focus
+{
+	height: 25px;
+	margin: 4px;
+	padding: 4px;
+}
+
+.ds-node__quote-textfield > .unity-text-field__input
+{
+	background-color: #232527;
+	border-color: transparent;
+	border-left-color: #27292C;
+	border-left-width: 4px;
+	padding: 16px;
+	max-width: 600px;
+}
+
+.ds-node__quote-textfield > .unity-text-field__input:hover
+{
+	background-color: #252729;
+}
+
+.ds-node__quote-textfield > .unity-text-field__input:focus
+{
+	background-color: #1D1D1E;
+	border-color: #27292C;
+}
+
+/* BUTTONS */
+
+.ds-node__button
+{
+	background-color: #252729;
+	border-color: #1D1D1E;
+	margin: 4px;
+	max-height: 25px;
+}
+
+.ds-node__button:hover
+{
+	background-color: #2B2D2F;
+}
+
+.ds-node__button:active
+{
+	background-color: #212325;
+	color: #FDD057;
+}
+
+/* ELEMENTS */
+
+TextField
+{
+	margin-left: 0px;
+}
+
+.ds-node__custom-data-container > Foldout
+{
+	margin-left: -4px;
+	margin-top: 4px;
+}
+
+.ds-node__custom-data-container > Foldout > TextField
+{
+	margin-left: -12px;
+	margin-top: 8px;
+}
+
+/* BUILT IN */
+
+.unity-toggle__text
+{
+	margin-left: 2px;
+}
