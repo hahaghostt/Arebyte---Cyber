@@ -110,8 +110,8 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Distortion_Scale: 0.05
-    - _Distortion_Scroll_Speed: 0.04
-    - _Distortion_Strength: 0.39
+    - _Distortion_Scroll_Speed: 0.85
+    - _Distortion_Strength: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -134,7 +134,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.495283, g: 0.53435576, b: 1, a: 0.3254902}
+    - _Color: {r: 0.5801887, g: 0.61273223, b: 1, a: 0.3254902}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
