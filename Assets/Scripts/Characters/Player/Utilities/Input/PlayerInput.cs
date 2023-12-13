@@ -19,7 +19,7 @@ namespace CyberMovementSystem
 
         private void OnEnable()
         {
-            InputActions.Enable(); 
+            InputActions.Enable();
 
         }
 

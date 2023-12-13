@@ -6,20 +6,24 @@ namespace CyberMovementSystem
 {
     public class PlayerMovementStateMachine : StateMachine
     {
+
+        public Player Player { get; } 
         public PlayerIdlingState IdlingState { get; }
         public PlayerWalkingState WalkingState { get; }
         public PlayerRunningState RunningState { get; }
         public PlayerSprintingState SprintingState { get; }
 
-        public PlayerMovementStateMachine()
+        public PlayerMovementStateMachine(Player player)
         {
-            IdlingState = new PlayerIdlingState(); 
+            Player = player;
 
-            WalkingState = new PlayerWalkingState();
+            IdlingState = new PlayerIdlingState(this);
 
-            RunningState = new PlayerRunningState();
+            WalkingState = new PlayerWalkingState(this);
 
-            SprintingState = new PlayerSprintingState();
+            RunningState = new PlayerRunningState(this);
+
+            SprintingState = new PlayerSprintingState(this);
         }
     }
 }

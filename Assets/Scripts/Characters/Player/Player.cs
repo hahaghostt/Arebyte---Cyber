@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace CyberMovementSystem
@@ -6,6 +5,7 @@ namespace CyberMovementSystem
     [RequireComponent(typeof(PlayerInput))]
     public class Player : MonoBehaviour
     {
+        public Rigidbody Rigidbody { get; private set;  } 
         public PlayerInput Input { get; private set; }
         private PlayerMovementStateMachine movementStateMachine;
 
@@ -13,7 +13,10 @@ namespace CyberMovementSystem
 
         private void Awake()
         {
-            movementStateMachine = new PlayerMovementStateMachine(); 
+            Rigidbody = GetComponent<Rigidbody>();
+            Input = GetComponent<PlayerInput>();
+            movementStateMachine = new PlayerMovementStateMachine(this); 
+
 
         }
 
@@ -27,7 +30,7 @@ namespace CyberMovementSystem
         {
             movementStateMachine.HandleInput();
 
-            movementStateMachine.Update(); 
+            movementStateMachine.Update();
         }
 
         private void FixedUpdate()
