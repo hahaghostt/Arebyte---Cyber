@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d824b8da0aeeec9468a10e6f1321775d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Michroma
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5b146db65f12f4546b78009839e93433, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
