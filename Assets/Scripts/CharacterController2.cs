@@ -52,6 +52,8 @@ public class CharacterController2 : MonoBehaviour
             RotateCamera();
 
             playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0, 0);
+
+            
             
         }
 
@@ -60,7 +62,9 @@ public class CharacterController2 : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             cameraRotationX = Mathf.Clamp(cameraRotationX, 0, 0f);
-            cameraRotationY = Mathf.Clamp(cameraRotationY, 0, 0f); 
+            cameraRotationY = Mathf.Clamp(cameraRotationY, 0, 0f);
+            rb.freezeRotation = true;
+           
 
         }
     }

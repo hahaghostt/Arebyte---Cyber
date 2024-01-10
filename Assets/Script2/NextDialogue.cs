@@ -6,10 +6,11 @@ namespace CyberMovementSystem
 {
     public class NextDialogue : MonoBehaviour
     {
-        int index = 2; 
+        // int index = 2; 
 
         private void Update()
         {
+            /*
             if(Input.GetKeyDown(KeyCode.F) && transform.childCount > 1)
             {
                 if (CharacterController2.dialogue)
@@ -26,7 +27,7 @@ namespace CyberMovementSystem
                 {
                     gameObject.SetActive(false);  
                 }
-            }
-        }
+            } */ 
+        } 
     }
 }
