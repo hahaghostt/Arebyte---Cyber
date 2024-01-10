@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using CyberMovementSystem;
 
 public class CharacterController2 : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CharacterController2 : MonoBehaviour
     private Camera playerCamera;
 
     private float cameraRotationX = 0f;
+    private float cameraRotationY = 0f;
 
     public float jumpForce = 10f;
     public float gravityModifier;
@@ -20,6 +22,8 @@ public class CharacterController2 : MonoBehaviour
 
     private float maxCastDistance = 5f; // Adjust the distance based on your scene
     private LayerMask obstacleLayer; // Specify the layer for obstacles
+
+    static public bool dialogue = false; 
 
     private void Start()
     {
@@ -38,8 +42,27 @@ public class CharacterController2 : MonoBehaviour
     private void Update()
     {
         HandleInput();
-        MoveCharacter();
+        // MoveCharacter();
         RotateCamera();
+
+        if (!CharacterController2.dialogue)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            RotateCamera();
+
+            playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0, 0);
+            
+        }
+
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            cameraRotationX = Mathf.Clamp(cameraRotationX, 0, 0f);
+            cameraRotationY = Mathf.Clamp(cameraRotationY, 0, 0f); 
+
+        }
     }
 
     private void HandleInput()
@@ -68,11 +91,17 @@ public class CharacterController2 : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
 
         transform.Rotate(Vector3.up, mouseX);
+        transform.Rotate(Vector3.up, mouseY);
 
         cameraRotationX -= mouseY;
         cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
 
-        
+        cameraRotationY -= mouseX;
+        // cameraRotationY = Mathf.Clamp(cameraRotation, -90f, 90f);*/
+
+        playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationY, 30f, 30f);
+
+
         if (Physics.SphereCast(playerCamera.transform.position, 10f, playerCamera.transform.forward, out RaycastHit hit, maxCastDistance, obstacleLayer))
         {
             
@@ -82,6 +111,14 @@ public class CharacterController2 : MonoBehaviour
         {
             // If no obstacle is hit, set the normal camera rotation
             playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(!dialogue)
+        {
+            MoveCharacter(); 
         }
     }
 
