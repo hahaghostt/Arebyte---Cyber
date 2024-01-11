@@ -912,7 +912,12 @@ MonoBehaviour:
   pressE: {fileID: 2137560569}
   TASK: {fileID: 1069389659}
   TASK2: {fileID: 1981203367}
-  Name: []
+  Name:
+  - 'Admin '
+  text3: {fileID: 1176512021}
+  Name2: 0
+  Options: 0
+  OptionsDialogue: {fileID: 0}
 --- !u!65 &126816066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8907,7 +8912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Admin '
+  m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9de299d0d93a2134a88d5c353e742736, type: 2}
   m_sharedMaterial: {fileID: -4325291387571056980, guid: 9de299d0d93a2134a88d5c353e742736, type: 2}
@@ -12317,6 +12322,10 @@ MonoBehaviour:
   TASK2: {fileID: 1069389659}
   Name:
   - 'Pass '
+  text3: {fileID: 1176512021}
+  Name2: 0
+  Options: 0
+  OptionsDialogue: {fileID: 0}
 --- !u!65 &1752431265
 BoxCollider:
   m_ObjectHideFlags: 0

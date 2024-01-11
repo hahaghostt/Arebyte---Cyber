@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 namespace CyberMovementSystem
 {
@@ -22,14 +24,20 @@ namespace CyberMovementSystem
         public GameObject TASK;
         public GameObject TASK2;
 
-        public string[] Name; 
+        public string[] Name;
+        public TMPro.TextMeshProUGUI text3;
+        public int Name2;
+
+        public bool Options;
+        public GameObject OptionsDialogue; 
 
         bool player_detection = false;
 
         void Start()
         {
             defaultSprite.SetActive(false);
-            happySprite.SetActive(false);   
+            happySprite.SetActive(false);
+            Options = false; 
 
         }
 
@@ -41,6 +49,7 @@ namespace CyberMovementSystem
                 CharacterController2.dialogue = true;
                 placement = 0;
                 string[] name = new string[Name.Length];
+                text3.text = Name[Name2];
 
                 pressE.SetActive(false);
                 d_template.SetActive(true);
@@ -78,6 +87,13 @@ namespace CyberMovementSystem
                 
                     defaultSprite.SetActive(true);
                 }
+
+                else if (Dialogue[placement].Contains("Yeah, I’d really appreciate that."))
+                {
+                    defaultSprite.SetActive(true);
+                    happySprite.SetActive(false);
+                    OptionsDialogue.SetActive(true); 
+                }
             }
             else
             {
@@ -105,5 +121,6 @@ namespace CyberMovementSystem
             pressE.SetActive(false);
             TASK.SetActive(true);
         }
+
     }
 }
