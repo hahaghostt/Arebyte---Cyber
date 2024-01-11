@@ -9,10 +9,14 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Windows Light
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 75c8c8306df752a42916e9454ae3d5b7, type: 2}
+  m_Parent: {fileID: 2100000, guid: e385ba41b7a558b409bcde114c30d588, type: 2}
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _EMISSION
+  - _METALLICSPECGLOSSMAP
+  - _NORMALMAP
+  - _OCCLUSIONMAP
+  - _PARALLAXMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
