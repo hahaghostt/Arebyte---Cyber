@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 namespace CyberMovementSystem
 {
@@ -11,91 +10,98 @@ namespace CyberMovementSystem
         public GameObject d_template;
         public GameObject canva;
 
+        public GameObject defaultSprite; // Default character sprite GameObject
+        public GameObject happySprite;   // Character sprite for happy dialogue
+
         public string[] Dialogue;
         public int placement;
 
-        public TMPro.TextMeshProUGUI text2; 
+        public TMPro.TextMeshProUGUI text2;
 
-        public GameObject pressE; 
+        public GameObject pressE;
+        public GameObject TASK;
+        public GameObject TASK2;
+
         bool player_detection = false;
-        // Start is called before the first frame update
+
+        void Start()
+        {
+            defaultSprite.SetActive(false); // Start with the default sprite turned off
+            happySprite.SetActive(false);   // Start with the happy sprite turned off
+
+        }
+
         void Update()
         {
             if (player_detection && Input.GetKeyDown(KeyCode.E) && !CharacterController2.dialogue)
             {
                 canva.SetActive(true);
                 CharacterController2.dialogue = true;
-                // print("Dialogue Started");
                 placement = 0;
-
-                /*
-                for (int i = 0; i < Dialogue.Length; i++)
-                {
-                    Dialogue[i] = "";
-                }
-
-                NewDialogue("Hi");
-                NewDialogue("Kath3r1ne Dialogue???");
-                NewDialogue("WOrk pls");
-                */
-
-                placement = 0;
-                text2.text = Dialogue[placement];
 
                 pressE.SetActive(false);
                 d_template.SetActive(true);
-                //  newUI.SetActive(true); 
-                //   canva.transform.GetChild(0).gameObject.SetActive(true); 
-
-
+                defaultSprite.SetActive(true); // Turn on the default sprite
+                UpdateDialogue();
             }
-
             else if (player_detection && Input.GetKeyDown(KeyCode.E) && CharacterController2.dialogue)
             {
                 placement += 1;
-                if (Dialogue[placement] != "")
-                {
-                    text2.text = Dialogue[placement]; 
-                }
-
-                else
-                {
-                    CharacterController2.dialogue = false;
-                    d_template.SetActive(false); 
-                }
-               
-
+                UpdateDialogue();
             }
-        
         }
 
-        void NewDialogue(string text)
+        void UpdateDialogue()
         {
-            Dialogue[placement] = text;
-            placement += 1; 
-            /* GameObject template_clone = Instantiate(d_template, d_template.transform);
-            template_clone.transform.SetParent (canva.transform);
-            template_clone.transform.localPosition = Vector3.zero;
-            template_clone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = text;
-            newUI = template_clone; */ 
+            if (placement < Dialogue.Length)
+            {
+                text2.text = Dialogue[placement];
 
+                // Switching sprites based on specific keywords in the dialogue
+                if (Dialogue[placement].Contains("get to it"))
+                {
+                    defaultSprite.SetActive(false);
+                    
+                    happySprite.SetActive(true);
+                }
+                else if (Dialogue[placement].Contains("Here"))
+                {
+                    defaultSprite.SetActive(false);
+                    happySprite.SetActive(true);
+                 
+                }
+                else if (Dialogue[placement].Contains("Hey!"))
+                {
+                    happySprite.SetActive(false);
+                
+                    defaultSprite.SetActive(true);
+                }
+            }
+            else
+            {
+                CharacterController2.dialogue = false;
+                d_template.SetActive(false);
+                defaultSprite.SetActive(false);
+                happySprite.SetActive(false);
+            
+            }
         }
-
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.name == "PlayerBody")
+            if (other.name == "PlayerBody")
             {
                 player_detection = true;
-                pressE.SetActive(true); 
+                pressE.SetActive(true);
+                TASK2.SetActive(false);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
             player_detection = false;
-            pressE.SetActive(false); 
+            pressE.SetActive(false);
+            TASK.SetActive(true);
         }
-
     }
 }

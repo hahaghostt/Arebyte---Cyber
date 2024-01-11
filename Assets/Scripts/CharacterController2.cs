@@ -5,9 +5,9 @@ using CyberMovementSystem;
 
 public class CharacterController2 : MonoBehaviour
 {
+
     public float movementSpeed = 5f;
     public float rotationSpeed = 2f;
-    public float sprintSpeed = 8f;
 
     private Rigidbody rb;
     private Camera playerCamera;
@@ -20,10 +20,10 @@ public class CharacterController2 : MonoBehaviour
 
     public bool isOnGround = true;
 
-    private float maxCastDistance = 5f; // Adjust the distance based on your scene
-    private LayerMask obstacleLayer; // Specify the layer for obstacles
+    private float maxCastDistance = 5f;
+    private LayerMask obstacleLayer;
 
-    static public bool dialogue = false; 
+    static public bool dialogue = false;
 
     private void Start()
     {
@@ -36,41 +36,29 @@ public class CharacterController2 : MonoBehaviour
 
         Physics.gravity *= gravityModifier;
 
-        obstacleLayer = LayerMask.GetMask("obstacles"); 
+        obstacleLayer = LayerMask.GetMask("obstacles");
     }
 
     private void Update()
     {
         HandleInput();
-        // MoveCharacter();
         RotateCamera();
-
-        if (!CharacterController2.dialogue)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            RotateCamera();
-
-            playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0, 0);
-
-            
-            
-        }
-
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            cameraRotationX = Mathf.Clamp(cameraRotationX, 0, 0f);
-            cameraRotationY = Mathf.Clamp(cameraRotationY, 0, 0f);
-            rb.freezeRotation = true;
-           
-
-        }
     }
 
     private void HandleInput()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -83,8 +71,13 @@ public class CharacterController2 : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 moveVelocity = transform.TransformDirection(moveDirection) * (movementSpeed);
+        // Get the forward vector of the player's transform
+        Vector3 moveDirection = transform.forward * vertical + transform.right * horizontal;
+
+        // Normalize the direction to ensure consistent movement speed in all directions
+        moveDirection.Normalize();
+
+        Vector3 moveVelocity = moveDirection * movementSpeed;
 
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
     }
@@ -94,45 +87,41 @@ public class CharacterController2 : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
 
-        transform.Rotate(Vector3.up, mouseX);
-        transform.Rotate(Vector3.up, mouseY);
-
-        cameraRotationX -= mouseY;
-        cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
-
-        cameraRotationY -= mouseX;
-        // cameraRotationY = Mathf.Clamp(cameraRotation, -90f, 90f);*/
-
-        playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationY, 30f, 30f);
-
-
-        if (Physics.SphereCast(playerCamera.transform.position, 10f, playerCamera.transform.forward, out RaycastHit hit, maxCastDistance, obstacleLayer))
+        if (!CharacterController2.dialogue)
         {
-            
-            LimitCameraRotation(hit.distance);
-        }
-        else
-        {
-            // If no obstacle is hit, set the normal camera rotation
-            playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
-        }
-    }
+            if (Input.GetMouseButton(1))
+            {
+                // Rotate the player around the Y-axis
+                cameraRotationY += mouseX;
+                transform.rotation = Quaternion.Euler(0f, cameraRotationY, 0f);
 
-    private void FixedUpdate()
-    {
-        if(!dialogue)
-        {
-            MoveCharacter(); 
+                // Rotate the camera around the X-axis
+                cameraRotationX -= mouseY;
+                cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
+                playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+
+                if (Physics.SphereCast(playerCamera.transform.position, 10f, playerCamera.transform.forward, out RaycastHit hit, maxCastDistance, obstacleLayer))
+                {
+                    LimitCameraRotation(hit.distance);
+                }
+            }
         }
     }
 
     private void LimitCameraRotation(float distanceToObstacle)
     {
-        // Adjust the camera's local rotation based on the distance to the obstacle
         float maxRotationX = Mathf.Atan(distanceToObstacle / 10f) * Mathf.Rad2Deg;
         cameraRotationX = Mathf.Clamp(cameraRotationX, -maxRotationX, maxRotationX);
 
         playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!dialogue)
+        {
+            MoveCharacter();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
