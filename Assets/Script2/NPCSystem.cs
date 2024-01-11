@@ -10,8 +10,8 @@ namespace CyberMovementSystem
         public GameObject d_template;
         public GameObject canva;
 
-        public GameObject defaultSprite; // Default character sprite GameObject
-        public GameObject happySprite;   // Character sprite for happy dialogue
+        public GameObject defaultSprite; 
+        public GameObject happySprite;   
 
         public string[] Dialogue;
         public int placement;
@@ -22,12 +22,14 @@ namespace CyberMovementSystem
         public GameObject TASK;
         public GameObject TASK2;
 
+        public string[] Name; 
+
         bool player_detection = false;
 
         void Start()
         {
-            defaultSprite.SetActive(false); // Start with the default sprite turned off
-            happySprite.SetActive(false);   // Start with the happy sprite turned off
+            defaultSprite.SetActive(false);
+            happySprite.SetActive(false);   
 
         }
 
@@ -38,10 +40,11 @@ namespace CyberMovementSystem
                 canva.SetActive(true);
                 CharacterController2.dialogue = true;
                 placement = 0;
+                string[] name = new string[Name.Length];
 
                 pressE.SetActive(false);
                 d_template.SetActive(true);
-                defaultSprite.SetActive(true); // Turn on the default sprite
+                defaultSprite.SetActive(true); 
                 UpdateDialogue();
             }
             else if (player_detection && Input.GetKeyDown(KeyCode.E) && CharacterController2.dialogue)
@@ -57,7 +60,6 @@ namespace CyberMovementSystem
             {
                 text2.text = Dialogue[placement];
 
-                // Switching sprites based on specific keywords in the dialogue
                 if (Dialogue[placement].Contains("get to it"))
                 {
                     defaultSprite.SetActive(false);
