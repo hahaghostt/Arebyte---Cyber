@@ -11,6 +11,7 @@ namespace CyberMovementSystem
         private Camera playerCamera;
 
         private float cameraRotationX = 0f;
+        private float cameraRotationY = 0f;
 
         public float jumpForce = 10f;
         public float gravityModifier;
@@ -26,13 +27,16 @@ namespace CyberMovementSystem
         private Animator animator;
         private float angle;
 
+        GameObject cam;
+        float camRotation; 
+
         public static bool Dialogue { get; set; } = false;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
-            playerCamera = Camera.main;
+            cam = GameObject.Find("Main Camera");
 
             // Create an empty GameObject to act as a parent for both player and camera
             GameObject playerContainer = new GameObject("PlayerContainer");
@@ -54,6 +58,8 @@ namespace CyberMovementSystem
             HandleInput();
             RotateCamera();
             UpdateAnimations();
+
+            
         }
 
         private void HandleInput()
@@ -88,7 +94,7 @@ namespace CyberMovementSystem
 
 
            
-            transform.parent.rotation = Quaternion.Euler(0f, angle, 0f);
+           transform.parent.rotation = Quaternion.Euler(0f, angle, 0f);
 
             // Apply the velocity
             rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
@@ -103,7 +109,11 @@ namespace CyberMovementSystem
             {
                 cameraRotationX -= mouseY;
                 cameraRotationX = Mathf.Clamp(cameraRotationX, -90f, 90f);
-                playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
+
+                cameraRotationY -= mouseX;
+                angle = cameraRotationY; 
+
+                playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, -cameraRotationY, 0f);
 
                 // Check for camera collisions
                 if (Physics.SphereCast(playerCamera.transform.position, 10f, playerCamera.transform.forward, out RaycastHit hit, maxCastDistance, obstacleLayer))
@@ -113,7 +123,7 @@ namespace CyberMovementSystem
             }
         }
 
-
+        //*
         private void LimitCameraRotation(float distanceToObstacle)
         {
             float maxRotationX = Mathf.Atan(distanceToObstacle / 100f) * Mathf.Rad2Deg;
@@ -121,6 +131,7 @@ namespace CyberMovementSystem
 
             playerCamera.transform.localRotation = Quaternion.Euler(cameraRotationX, 0f, 0f);
         }
+        
 
         private void FixedUpdate()
         {

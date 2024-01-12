@@ -9,6 +9,7 @@ namespace CyberMovementSystem
     {
         public GameObject ItemE;
         public GameObject Item;
+        public GameObject Artifact; 
         bool player_detection = false;
 
         private void OnTriggerEnter(Collider other)
@@ -35,13 +36,20 @@ namespace CyberMovementSystem
                 Debug.Log("Work");
                 player_detection = true;
                 Item.SetActive(true);
+                Artifact.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+
+                if (player_detection &&  Artifact.GetComponent<Rigidbody>() != null) 
+                {
+                   
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Item.SetActive(false);
+                Artifact.SetActive(false); 
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
