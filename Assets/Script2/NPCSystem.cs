@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 namespace CyberMovementSystem
 {
@@ -12,8 +11,8 @@ namespace CyberMovementSystem
         public GameObject d_template;
         public GameObject canva;
 
-        public GameObject defaultSprite; 
-        public GameObject happySprite;   
+        public GameObject defaultSprite;
+        public GameObject happySprite;
 
         public string[] Dialogue;
         public int placement;
@@ -29,7 +28,7 @@ namespace CyberMovementSystem
         public int Name2;
 
         public bool Options;
-        public GameObject OptionsDialogue; 
+        public GameObject OptionsDialogue;
 
         bool player_detection = false;
 
@@ -37,26 +36,25 @@ namespace CyberMovementSystem
         {
             defaultSprite.SetActive(false);
             happySprite.SetActive(false);
-            Options = false; 
-
+            Options = false;
         }
 
         void Update()
         {
-            if (player_detection && Input.GetKeyDown(KeyCode.E) && !CharacterController2.dialogue)
+            if (player_detection && Input.GetKeyDown(KeyCode.E) && !CharacterController2.Dialogue)
             {
                 canva.SetActive(true);
-                CharacterController2.dialogue = true;
+                CharacterController2.Dialogue = true;
                 placement = 0;
                 string[] name = new string[Name.Length];
                 text3.text = Name[Name2];
 
                 pressE.SetActive(false);
                 d_template.SetActive(true);
-                defaultSprite.SetActive(true); 
+                defaultSprite.SetActive(true);
                 UpdateDialogue();
             }
-            else if (player_detection && Input.GetKeyDown(KeyCode.E) && CharacterController2.dialogue)
+            else if (player_detection && Input.GetKeyDown(KeyCode.E) && CharacterController2.Dialogue)
             {
                 placement += 1;
                 UpdateDialogue();
@@ -72,36 +70,31 @@ namespace CyberMovementSystem
                 if (Dialogue[placement].Contains("get to it"))
                 {
                     defaultSprite.SetActive(false);
-                    
                     happySprite.SetActive(true);
                 }
                 else if (Dialogue[placement].Contains("Here"))
                 {
                     defaultSprite.SetActive(false);
                     happySprite.SetActive(true);
-                 
                 }
                 else if (Dialogue[placement].Contains("Hey!"))
                 {
                     happySprite.SetActive(false);
-                
                     defaultSprite.SetActive(true);
                 }
-
                 else if (Dialogue[placement].Contains("Yeah, I’d really appreciate that."))
                 {
                     defaultSprite.SetActive(true);
                     happySprite.SetActive(false);
-                    OptionsDialogue.SetActive(true); 
+                    OptionsDialogue.SetActive(true);
                 }
             }
             else
             {
-                CharacterController2.dialogue = false;
+                CharacterController2.Dialogue = false;
                 d_template.SetActive(false);
                 defaultSprite.SetActive(false);
                 happySprite.SetActive(false);
-            
             }
         }
 
@@ -121,6 +114,5 @@ namespace CyberMovementSystem
             pressE.SetActive(false);
             TASK.SetActive(true);
         }
-
     }
 }
