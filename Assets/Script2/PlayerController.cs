@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 namespace CyberMovementSystem
 {
@@ -22,8 +23,9 @@ namespace CyberMovementSystem
         private Vector3 playerVelocity;
         private bool groundedPlayer;
         [SerializeField]
-        public float rotationSpeed = 4.0f; 
+        public float rotationSpeed = 4.0f;
 
+        private Animator Animate; 
         private Transform cameraMain;
 
         public static bool Dialogue { get; set; } = false;
@@ -44,6 +46,7 @@ namespace CyberMovementSystem
         {
             charController = GetComponent<CharacterController>(); 
             cameraMain = Camera.main.transform;
+            Animate = GetComponent<Animator>();
         }
 
         void Update()
@@ -63,6 +66,8 @@ namespace CyberMovementSystem
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
+
+               
             }
 
             if (!Dialogue)
@@ -74,7 +79,9 @@ namespace CyberMovementSystem
            
             if (jumpControl.action.triggered && groundedPlayer)
             {
+                Animate.SetTrigger("Jump");
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                
             }
 
             playerVelocity.y += gravityValue * Time.deltaTime;
@@ -82,6 +89,7 @@ namespace CyberMovementSystem
 
             if (movement != Vector2.zero) 
             {
+                Animate.SetFloat("IsMoving", playerSpeed);
                 float targetAngle = Mathf.Atan2(movement.x, movement.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
                 Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed); 

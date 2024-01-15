@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 3.07
+    m_Value: 2.21
   intensity:
     m_OverrideState: 1
     m_Value: 0.09
@@ -123,8 +123,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.530303
-          value: 0.657754
+          time: 0.5214106
+          value: 0.64893615
           inSlope: 1.7142849
           outSlope: 1.7142849
           tangentMode: 0
