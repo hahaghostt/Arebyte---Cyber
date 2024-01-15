@@ -89,7 +89,6 @@ namespace CyberMovementSystem
 
             if (movement != Vector2.zero) 
             {
-                Animate.SetFloat("IsMoving", playerSpeed);
                 float targetAngle = Mathf.Atan2(movement.x, movement.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
                 Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed); 
