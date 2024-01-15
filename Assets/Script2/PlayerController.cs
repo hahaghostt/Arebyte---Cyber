@@ -26,6 +26,8 @@ namespace CyberMovementSystem
 
         private Transform cameraMain;
 
+        public static bool Dialogue { get; set; } = false;
+
         private void OnEnable()
         {
             movementControl.action.Enable();
@@ -40,7 +42,7 @@ namespace CyberMovementSystem
 
         private void Start()
         {
-            charController = GetComponent<CharacterController>(); // Use GetComponent<CharacterController>() here
+            charController = GetComponent<CharacterController>(); 
             cameraMain = Camera.main.transform;
         }
 
@@ -63,7 +65,13 @@ namespace CyberMovementSystem
                 gameObject.transform.forward = move;
             }
 
-            // Changes the height position of the player..
+            if (!Dialogue)
+            {
+                movementControl.action.Enable();
+                jumpControl.action.Enable(); 
+            }
+
+           
             if (jumpControl.action.triggered && groundedPlayer)
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
