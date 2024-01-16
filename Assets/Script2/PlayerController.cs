@@ -10,7 +10,7 @@ namespace CyberMovementSystem
     public class PlayerController : MonoBehaviour
     {
         [SerializeField]
-        public float playerSpeed = 2.0f;
+        public float playerSpeed = 8.0f;
         [SerializeField]
         public float jumpHeight = 1.0f;
         [SerializeField]
@@ -24,6 +24,11 @@ namespace CyberMovementSystem
         private bool groundedPlayer;
         [SerializeField]
         public float rotationSpeed = 4.0f;
+        [SerializeField]
+        public float sprintSpeed = 12.0f;
+        float sprintTimer;
+        [SerializeField]
+        public float maxSprint = 15.0f;
 
         private Animator Animate; 
         private Transform cameraMain;
@@ -62,6 +67,7 @@ namespace CyberMovementSystem
             move = cameraMain.forward * move.z + cameraMain.right * move.x;
             move.y = 0;
             charController.Move(move * playerSpeed * Time.deltaTime);
+            Cursor.lockState = CursorLockMode.Locked;
 
             if (move != Vector3.zero)
             {
@@ -70,11 +76,31 @@ namespace CyberMovementSystem
                
             }
 
-            if (!Dialogue)
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                maxSprint = sprintTimer;
+                sprintTimer = sprintTimer - Time.deltaTime;
+            }
+
+            else 
+            {
+                maxSprint = playerSpeed;
+                if (Input.GetKey(KeyCode.LeftShift) == false)
+                {
+                    sprintTimer = sprintTimer + Time.deltaTime;
+                }
+
+
+            }
+
+           /*  if (!Dialogue)
             {
                 movementControl.action.Enable();
-                jumpControl.action.Enable(); 
-            }
+                jumpControl.action.Enable();
+                Cursor.lockState = CursorLockMode.None;
+            } */ 
+
+         
 
            
             if (jumpControl.action.triggered && groundedPlayer)
@@ -93,6 +119,7 @@ namespace CyberMovementSystem
                 Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed); 
             }
+
         }
     }
 }
