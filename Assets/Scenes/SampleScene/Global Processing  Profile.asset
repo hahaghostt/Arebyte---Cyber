@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 2.21
+    m_Value: 2.11
   intensity:
     m_OverrideState: 1
     m_Value: 0.09
@@ -97,7 +97,7 @@ MonoBehaviour:
   master:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 4
+      <length>k__BackingField: 6
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -114,8 +114,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.17884131
-          value: 0.18085104
+          time: 0.07052897
+          value: 0.06382978
           inSlope: 0.040609874
           outSlope: 0.040609874
           tangentMode: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.5214106
-          value: 0.64893615
+          time: 0.33753148
+          value: 0.2925532
           inSlope: 1.7142849
           outSlope: 1.7142849
           tangentMode: 0
@@ -132,10 +132,28 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
+          time: 0.5566751
+          value: 0.7340425
+          inSlope: 0.6497543
+          outSlope: 0.6497543
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.7632242
+          value: 0.86825687
+          inSlope: 0.6384293
+          outSlope: 0.6384293
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0.021438599
+          outSlope: 0.021438599
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -306,7 +324,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 0.77391535, z: 0.93009907, w: 0.24713153}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.9915184, y: 0.9379347, z: 1, w: 0}
+    m_Value: {x: 0.84938586, y: 0.86883205, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
     m_Value: {x: 0.7093221, y: 0.8581715, z: 1, w: -0.4324802}
@@ -337,7 +355,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.18
+    m_Value: 0.03
   contrast:
     m_OverrideState: 1
     m_Value: -6
