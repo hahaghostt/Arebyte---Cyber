@@ -13,6 +13,11 @@ namespace CyberMovementSystem
 
         public GameObject defaultSprite;
         public GameObject happySprite;
+        public GameObject People;
+
+        public GameObject objectToShow;
+        public float delayInSeconds = 2f;
+        public GameObject KillObject; 
 
         public string[] Dialogue;
         public int placement;
@@ -35,8 +40,11 @@ namespace CyberMovementSystem
         void Start()
         {
             defaultSprite.SetActive(false);
+            People.SetActive(false);
             happySprite.SetActive(false);
             Options = false;
+            KillObject.SetActive(true); 
+            Invoke("ShowObject", delayInSeconds);
         }
 
         void Update()
@@ -87,6 +95,20 @@ namespace CyberMovementSystem
                     defaultSprite.SetActive(true);
                     happySprite.SetActive(false);
                     OptionsDialogue.SetActive(true);
+                }
+
+                else if (Dialogue[placement].Contains("You can go back to the Vtuber headquaters and ask for who sells them"))
+                {
+                    People.SetActive(true);
+                    if (objectToShow != null)
+                    {
+                        objectToShow.SetActive(true);
+                    }
+                }
+
+                else if (Dialogue[placement].Contains("get to it! "))
+                {
+                    KillObject.SetActive(false); 
                 }
             }
             else
