@@ -15,8 +15,7 @@ namespace CyberMovementSystem
 
         private void Start()
         {
-            textBoxes[currentTextIndex].SetActive(false);
-            SlideTransition = GetComponent<Animator>();
+           textBoxes[currentTextIndex].SetActive(false);
         }
 
         void Update()
@@ -26,7 +25,8 @@ namespace CyberMovementSystem
             {
                 if (textBoxes != null && textBoxes.Length > 0)
                 {
-                    
+                   // textBoxes[currentTextIndex].SetActive(false);
+
                     currentTextIndex = (currentTextIndex + 1) % textBoxes.Length;
 
                     textBoxes[currentTextIndex].SetActive(true);
