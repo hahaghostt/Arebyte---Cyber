@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1); 
     }
+
+    public void NextScene2()
+    {
+        SceneManager.LoadScene(2);
+    }
    
     
 

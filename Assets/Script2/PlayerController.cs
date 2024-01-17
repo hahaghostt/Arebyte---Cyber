@@ -72,55 +72,49 @@ namespace CyberMovementSystem
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
-
-               
+                Animate.SetBool("IsMoving", true); 
+            }
+            else
+            {
+                Animate.SetBool("IsMoving", false); 
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && sprintTimer > 0)
             {
-                maxSprint = sprintTimer;
-                sprintTimer = sprintTimer - Time.deltaTime;
+                playerSpeed = sprintSpeed;
+                sprintTimer -= Time.deltaTime;
             }
-
-            else 
+            else
             {
-                maxSprint = playerSpeed;
-                if (Input.GetKey(KeyCode.LeftShift) == false)
+                playerSpeed = Mathf.Lerp(playerSpeed, maxSprint, Time.deltaTime);
+                if (sprintTimer < maxSprint)
                 {
-                    sprintTimer = sprintTimer + Time.deltaTime;
+                    sprintTimer += Time.deltaTime;
                 }
-
-
             }
 
-           /*  if (!Dialogue)
-            {
-                movementControl.action.Enable();
-                jumpControl.action.Enable();
-                Cursor.lockState = CursorLockMode.None;
-            } */ 
-
-         
-
-           
             if (jumpControl.action.triggered && groundedPlayer)
             {
                 Animate.SetTrigger("Jump");
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-                
+            }
+
+            if (groundedPlayer)
+            {
+                Animate.ResetTrigger("Jump"); // Reset the "Jump" trigger when grounded
             }
 
             playerVelocity.y += gravityValue * Time.deltaTime;
             charController.Move(playerVelocity * Time.deltaTime);
 
-            if (movement != Vector2.zero) 
+            if (movement != Vector2.zero)
             {
                 float targetAngle = Mathf.Atan2(movement.x, movement.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
                 Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed); 
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
             }
-
         }
+
     }
 }
 
