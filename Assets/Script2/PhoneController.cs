@@ -10,6 +10,15 @@ namespace CyberMovementSystem
         public GameObject[] textBoxes; // Array of GameObjects to be activated
         private int currentTextIndex = 0;    // Index of the currently active object
 
+        public Animator SlideTransition;
+        public float SlideSpeed; 
+
+        private void Start()
+        {
+            textBoxes[currentTextIndex].SetActive(false);
+            SlideTransition = GetComponent<Animator>();
+        }
+
         void Update()
         {
             // Check if the "E" key is pressed
@@ -17,8 +26,7 @@ namespace CyberMovementSystem
             {
                 if (textBoxes != null && textBoxes.Length > 0)
                 {
-                    textBoxes[currentTextIndex].SetActive(false);
-
+                    
                     currentTextIndex = (currentTextIndex + 1) % textBoxes.Length;
 
                     textBoxes[currentTextIndex].SetActive(true);
