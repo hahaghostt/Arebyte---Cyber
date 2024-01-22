@@ -6,8 +6,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
+    AudioSource futuristicclick;
+
+    public void Start()
+    {
+        futuristicclick = GetComponent<AudioSource>();
+    }
+
     public void NextScene()
     {
+        futuristicclick.Play();
         SceneManager.LoadScene(1); 
     }
 
