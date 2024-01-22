@@ -6,17 +6,19 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    AudioSource futuristicclick;
+    public AudioSource futuristicclick;
+    public AudioClip futuristic; 
 
     public void Start()
     {
-        futuristicclick = GetComponent<AudioSource>();
+        
     }
 
     public void NextScene()
     {
+        futuristicclick.clip = futuristic; 
         futuristicclick.Play();
-        SceneManager.LoadScene(1); 
+   
     }
 
     public void NextScene2()
