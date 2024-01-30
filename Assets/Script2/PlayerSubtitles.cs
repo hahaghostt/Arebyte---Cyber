@@ -23,6 +23,7 @@ namespace CyberMovementSystem
         {
             player_detection = false;
             ItsHot.SetActive(false);
+            Destroy(gameObject); 
 
         }
     }

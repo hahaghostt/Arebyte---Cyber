@@ -13,6 +13,7 @@ namespace CyberMovementSystem
 
         public GameObject defaultSprite;
         public GameObject happySprite;
+        public GameObject ExtraSprite; 
         public GameObject People;
 
         public GameObject objectToShow;
@@ -42,8 +43,11 @@ namespace CyberMovementSystem
             defaultSprite.SetActive(false);
             People.SetActive(false);
             happySprite.SetActive(false);
+            ExtraSprite.SetActive(false);
             Options = false;
             KillObject.SetActive(true); 
+            
+
             Invoke("ShowObject", delayInSeconds);
         }
 
@@ -78,22 +82,43 @@ namespace CyberMovementSystem
                 if (Dialogue[placement].Contains("get to it"))
                 {
                     defaultSprite.SetActive(false);
+                    ExtraSprite.SetActive(false);
                     happySprite.SetActive(true);
                 }
                 else if (Dialogue[placement].Contains("Here"))
                 {
                     defaultSprite.SetActive(false);
+                    ExtraSprite.SetActive(false);
                     happySprite.SetActive(true);
                 }
                 else if (Dialogue[placement].Contains("Hey!"))
                 {
+                    ExtraSprite.SetActive(false);
                     happySprite.SetActive(false);
                     defaultSprite.SetActive(true);
                 }
                 else if (Dialogue[placement].Contains("Yeah, I’d really appreciate that."))
                 {
+                    ExtraSprite.SetActive(false);
                     defaultSprite.SetActive(true);
                     happySprite.SetActive(false);
+                    OptionsDialogue.SetActive(true);
+                }
+
+                else if (Dialogue[placement].Contains("please fix my camera for me i really need it to film ( pray hands **)"))
+                {
+                    ExtraSprite.SetActive(false);
+                    defaultSprite.SetActive(false);
+                    happySprite.SetActive(true);
+                    OptionsDialogue.SetActive(true);
+                }
+
+                else if (Dialogue[placement].Contains("but to get the parts to this camera the shop your going to go requires a central server pass"))
+                {
+                    ExtraSprite.SetActive(true); 
+                    defaultSprite.SetActive(false);
+                    happySprite.SetActive(false);
+
                     OptionsDialogue.SetActive(true);
                 }
 
@@ -135,6 +160,7 @@ namespace CyberMovementSystem
             player_detection = false;
             pressE.SetActive(false);
             TASK.SetActive(true);
+            Destroy(gameObject); 
         }
     }
 }
