@@ -30,8 +30,10 @@ namespace CyberMovementSystem
         [SerializeField]
         public float maxSprint = 15.0f;
 
-        private Animator Animate; 
+        public Animator Animate; 
         private Transform cameraMain;
+
+
 
         public static bool Dialogue { get; set; } = false;
 
@@ -51,7 +53,7 @@ namespace CyberMovementSystem
         {
             charController = GetComponent<CharacterController>(); 
             cameraMain = Camera.main.transform;
-            Animate = GetComponent<Animator>();
+           // Animate = GetComponent<Animator>();
         }
 
         void Update()

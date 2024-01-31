@@ -16,6 +16,8 @@ namespace CyberMovementSystem
         public GameObject ExtraSprite; 
         public GameObject People;
 
+        public GameObject Katherine2; 
+
         public GameObject objectToShow;
         public float delayInSeconds = 2f;
         public GameObject KillObject; 
@@ -45,7 +47,8 @@ namespace CyberMovementSystem
             happySprite.SetActive(false);
             ExtraSprite.SetActive(false);
             Options = false;
-            KillObject.SetActive(true); 
+            KillObject.SetActive(true);
+            Katherine2.SetActive(true);
             
 
             Invoke("ShowObject", delayInSeconds);
