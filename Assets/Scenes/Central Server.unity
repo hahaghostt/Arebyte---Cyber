@@ -28519,7 +28519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1558490450403415734, guid: 574bb43f413fb724f9ae5e8da1fa8f1a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.033892196
+      value: 0.033892192
       objectReference: {fileID: 0}
     - target: {fileID: 1558490450403415734, guid: 574bb43f413fb724f9ae5e8da1fa8f1a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -28527,7 +28527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1558490450403415734, guid: 574bb43f413fb724f9ae5e8da1fa8f1a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.020875938
+      value: 0.020875933
       objectReference: {fileID: 0}
     - target: {fileID: 1782688315234651101, guid: 574bb43f413fb724f9ae5e8da1fa8f1a, type: 3}
       propertyPath: m_Layer
@@ -59025,6 +59025,10 @@ PrefabInstance:
     - target: {fileID: 7585102743399330573, guid: 8ce59fcdbe1231a40a6d1addadcd81c9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153210725224615622, guid: 8ce59fcdbe1231a40a6d1addadcd81c9, type: 3}
+      propertyPath: m_text
+      value: 'Go to the central server '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
