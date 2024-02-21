@@ -7221,11 +7221,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2100043951}
-  - {fileID: 2066821547}
   - {fileID: 1792513978}
   - {fileID: 450633687}
   - {fileID: 674771783}
   - {fileID: 469308387}
+  - {fileID: 2066821547}
   m_Father: {fileID: 1321982849}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
