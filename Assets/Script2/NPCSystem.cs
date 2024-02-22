@@ -16,7 +16,9 @@ namespace CyberMovementSystem
         public GameObject ExtraSprite; 
         public GameObject People;
 
-        public GameObject Katherine2; 
+        public GameObject Katherine1;
+        public GameObject Katherine2;
+        public GameObject Katherine3;
 
         public GameObject objectToShow;
         public float delayInSeconds = 2f;
@@ -48,7 +50,9 @@ namespace CyberMovementSystem
             ExtraSprite.SetActive(false);
             Options = false;
             KillObject.SetActive(true);
-            Katherine2.SetActive(true);
+            Katherine1.SetActive(false);
+            Katherine2.SetActive(false);
+            Katherine3.SetActive(false);
             
 
             Invoke("ShowObject", delayInSeconds);
@@ -67,6 +71,9 @@ namespace CyberMovementSystem
                 pressE.SetActive(false);
                 d_template.SetActive(true);
                 defaultSprite.SetActive(true);
+                Katherine1.SetActive(false);
+                Katherine2.SetActive(false);
+                Katherine3.SetActive(false);
                 UpdateDialogue();
             }
             else if (player_detection && Input.GetKeyDown(KeyCode.E) && CharacterController2.Dialogue)
