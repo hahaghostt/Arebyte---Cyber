@@ -22,13 +22,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Green base 3
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 6458b56382fd9224ab37ed93245dd1a0, type: 2}
+  m_Parent: {fileID: 2100000, guid: c4470ac28d21c7847a4fc6c8f302d920, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _METALLICSPECGLOSSMAP
-  - _NORMALMAP
-  - _OCCLUSIONMAP
-  - _PARALLAXMAP
+  - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
