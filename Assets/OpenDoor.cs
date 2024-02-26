@@ -6,7 +6,7 @@ namespace CyberMovementSystem
 {
     public class OpenDoor : MonoBehaviour
     {
-
+        public GameObject door; 
         private Animator animate;
         private Animator animate2; 
         // Start is called before the first frame update

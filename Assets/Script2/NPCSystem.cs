@@ -40,6 +40,8 @@ namespace CyberMovementSystem
         public bool Options;
         public GameObject OptionsDialogue;
 
+        public GameObject DestroyDoor; 
+
         bool player_detection = false;
 
         void Start()
@@ -53,6 +55,7 @@ namespace CyberMovementSystem
             Katherine1.SetActive(false);
             Katherine2.SetActive(false);
             Katherine3.SetActive(false);
+            DestroyDoor.SetActive(true);
             
 
             Invoke("ShowObject", delayInSeconds);
@@ -125,7 +128,7 @@ namespace CyberMovementSystem
 
                 else if (Dialogue[placement].Contains("but to get the parts to this camera the shop your going to go requires a central server pass"))
                 {
-                    ExtraSprite.SetActive(true); 
+                    ExtraSprite.SetActive(true);
                     defaultSprite.SetActive(false);
                     happySprite.SetActive(false);
 
@@ -143,7 +146,12 @@ namespace CyberMovementSystem
 
                 else if (Dialogue[placement].Contains("get to it! "))
                 {
-                    KillObject.SetActive(false); 
+                    KillObject.SetActive(false);
+                }
+
+                else if (Dialogue[placement].Contains("I only sell normal passes "));
+                {
+                    DestroyDoor.SetActive(false); 
                 }
             }
             else
