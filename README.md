@@ -16,7 +16,9 @@ Audience: Anyone
 Key player needs: 
 
 1 Able to move and navigate easily around the map
+
 2 Able to talk to NPCs to progress in the game
+
 3 Able to interact with environment and quest items
 
 
